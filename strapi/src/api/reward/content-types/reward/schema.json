@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rewards",
+  "info": {
+    "singularName": "reward",
+    "pluralName": "rewards",
+    "displayName": "Reward",
+    "description": "Historique des points versés ; la clé empêche de verser deux fois la même récompense"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "unique": true,
+      "maxLength": 160
+    },
+    "recipient": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "points": {
+      "type": "integer",
+      "required": true
+    },
+    "reason": {
+      "type": "string",
+      "required": true,
+      "maxLength": 120
+    }
+  }
+}

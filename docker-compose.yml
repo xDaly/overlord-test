@@ -1,0 +1,64 @@
+x-app: &app
+  image: lerevenu-dev
+  env_file: .env
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:16-alpine
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  strapi:
+    <<: *app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app/strapi
+    command: ["node", "../node_modules/@strapi/strapi/bin/strapi.js", "develop"]
+    environment:
+      DATABASE_HOST: postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "${PORT:-1337}:${PORT:-1337}"
+    volumes:
+      - ./docker/uploads:/app/strapi/public/uploads
+
+  frontend:
+    <<: *app
+    pull_policy: never
+    working_dir: /app/frontend
+    command: ["node", "../node_modules/next/dist/bin/next", "dev", "-p", "3000", "-H", "0.0.0.0"]
+    environment:
+      STRAPI_URL: http://strapi:${PORT:-1337}
+      STRAPI_PUBLIC_URL: http://localhost:${PORT:-1337}
+    depends_on:
+      - strapi
+    ports:
+      - "3000:3000"
+
+  db-restore:
+    <<: *app
+    pull_policy: never
+    profiles: ["tools"]
+    working_dir: /app
+    entrypoint: ["node", "scripts/restore-db.cjs"]
+    environment:
+      DATABASE_HOST: postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./.env:/app/.env
+      - ./database:/app/database:ro

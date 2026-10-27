@@ -1,0 +1,197 @@
+{
+  "kind": "collectionType",
+  "collectionName": "up_users",
+  "info": {
+    "name": "user",
+    "description": "",
+    "singularName": "user",
+    "pluralName": "users",
+    "displayName": "User"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "string",
+      "minLength": 3,
+      "unique": true,
+      "configurable": false,
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "minLength": 6,
+      "configurable": false,
+      "required": true
+    },
+    "provider": {
+      "type": "string",
+      "configurable": false
+    },
+    "password": {
+      "type": "password",
+      "minLength": 6,
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "resetPasswordToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "confirmationToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "confirmed": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "blocked": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "role": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.role",
+      "inversedBy": "users",
+      "configurable": false
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "bio": {
+      "type": "text"
+    },
+    "discussions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::discussion.discussion",
+      "mappedBy": "author"
+    },
+    "replies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reply.reply",
+      "mappedBy": "author"
+    },
+    "interests": {
+      "type": "json"
+    },
+    "usefulDiscussions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::discussion.discussion",
+      "mappedBy": "usefulBy"
+    },
+    "followedDiscussions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::discussion.discussion",
+      "mappedBy": "followedBy"
+    },
+    "usefulReplies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::reply.reply",
+      "mappedBy": "usefulBy"
+    },
+    "communityRole": {
+      "type": "enumeration",
+      "enum": [
+        "member",
+        "redaction",
+        "moderator"
+      ],
+      "default": "member",
+      "required": true
+    },
+    "avatarColor": {
+      "type": "string",
+      "default": "var(--av-3)",
+      "maxLength": 30
+    },
+    "subscriber": {
+      "type": "boolean",
+      "default": false
+    },
+    "expertTitle": {
+      "type": "string",
+      "maxLength": 80
+    },
+    "points": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "monthPoints": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "monthKey": {
+      "type": "string",
+      "maxLength": 7
+    },
+    "streak": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "badges": {
+      "type": "json"
+    },
+    "stats": {
+      "type": "json"
+    },
+    "blogPosts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog-post.blog-post",
+      "mappedBy": "author"
+    },
+    "blogComments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog-comment.blog-comment",
+      "mappedBy": "author"
+    },
+    "usefulBlogPosts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::blog-post.blog-post",
+      "mappedBy": "usefulBy"
+    },
+    "usefulBlogComments": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::blog-comment.blog-comment",
+      "mappedBy": "usefulBy"
+    },
+    "events": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::event.event",
+      "mappedBy": "attendees"
+    }
+  }
+}

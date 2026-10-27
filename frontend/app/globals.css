@@ -1,0 +1,267 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: var(--font-display);
+    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", var(--font-inter), "Helvetica Neue", Arial, sans-serif;
+    --font-display: var(--font-playfair), "Times New Roman", Georgia, serif;
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+
+    --color-brand: var(--brand);
+    --color-brand-hover: var(--brand-hover);
+    --color-brand-soft: var(--brand-soft);
+    --color-brand-text: var(--brand-text);
+    --color-surface-2: var(--surface-2);
+    --color-surface-3: var(--surface-3);
+    --color-ink-2: var(--ink-2);
+    --color-ink-3: var(--ink-3);
+    --color-line: var(--line);
+    --color-line-strong: var(--line-strong);
+    --color-hairline: var(--hairline);
+    --color-fill: var(--fill);
+    --color-fill-2: var(--fill-2);
+    --color-glass: var(--glass);
+    --color-glass-strong: var(--glass-strong);
+    --color-ok: var(--ok);
+    --color-ok-soft: var(--ok-soft);
+    --color-alert-soft: var(--alert-soft);
+    --color-redac: var(--redac);
+    --color-redac-soft: var(--redac-soft);
+    --color-sub: var(--sub);
+    --color-sub-ink: var(--sub-ink);
+    --color-pro: var(--pro);
+    --color-hero: var(--hero);
+    --color-hero-top: var(--hero-top);
+    --color-av-1: var(--av-1);
+    --color-av-2: var(--av-2);
+    --color-av-3: var(--av-3);
+    --color-av-4: var(--av-4);
+    --color-av-5: var(--av-5);
+
+    --color-note: var(--note);
+    --color-note-ink: var(--note-ink);
+    --color-blog: var(--blog);
+
+    --animate-note-pulse: note-pulse 2.4s infinite;
+    --animate-flash: flash 1.6s;
+    --animate-grow: grow .7s cubic-bezier(.2,.7,.3,1);
+    --animate-pop: pop .35s;
+
+    --shadow-card: var(--shadow);
+    --shadow-pop: var(--shadow-lg);
+
+    --radius-sm: 9px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 16px;
+    --radius-2xl: 18px;
+    --radius-3xl: 22px;
+    --radius-4xl: 26px;
+}
+
+:root {
+    --background: #f5f5f7;
+    --foreground: #1d1d1f;
+    --card: #ffffff;
+    --card-foreground: #1d1d1f;
+    --popover: #ffffff;
+    --popover-foreground: #1d1d1f;
+    --primary: #eb0f0f;
+    --primary-foreground: #ffffff;
+    --secondary: #f2f2f4;
+    --secondary-foreground: #1d1d1f;
+    --muted: #f2f2f4;
+    --muted-foreground: #6e6e73;
+    --accent: rgba(0, 0, 0, 0.05);
+    --accent-foreground: #1d1d1f;
+    --destructive: #e00b0b;
+    --border: #e5e5ea;
+    --input: #e5e5ea;
+    --ring: #eb0f0f;
+    --chart-1: #eb0f0f;
+    --chart-2: #5856d6;
+    --chart-3: #0a7f99;
+    --chart-4: #c93400;
+    --chart-5: #6e6e73;
+    --radius: 14px;
+    --sidebar: #f5f5f7;
+    --sidebar-foreground: #1d1d1f;
+    --sidebar-primary: #eb0f0f;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: rgba(0, 0, 0, 0.08);
+    --sidebar-accent-foreground: #1d1d1f;
+    --sidebar-border: #e5e5ea;
+    --sidebar-ring: #eb0f0f;
+
+    --brand: #eb0f0f;
+    --brand-hover: #d00d0d;
+    --brand-soft: #ffeceb;
+    --brand-text: #e00b0b;
+    --surface-2: #f2f2f4;
+    --surface-3: #fff3f2;
+    --glass: rgba(255, 255, 255, 0.72);
+    --glass-strong: rgba(255, 255, 255, 0.86);
+    --line: #e5e5ea;
+    --line-strong: #c7c7cc;
+    --hairline: rgba(0, 0, 0, 0.07);
+    --fill: rgba(0, 0, 0, 0.05);
+    --fill-2: rgba(0, 0, 0, 0.08);
+    --ink-2: #424245;
+    --ink-3: #6e6e73;
+    --ok: #1a8a4a;
+    --ok-soft: #e4f6ea;
+    --alert-soft: #ffeceb;
+    --redac: #e00b0b;
+    --redac-soft: #fff5f4;
+    --sub: #c9a032;
+    --sub-ink: #1d1d1f;
+    --pro: #0a66d8;
+    --av-1: #5856d6;
+    --av-2: #0a7f99;
+    --av-3: #6e6e73;
+    --av-4: #c93400;
+    --av-5: #d30f45;
+    --hero: #1c1c1e;
+    --hero-top: #3a3a3c;
+    --note: #6d28d9;
+    --note-ink: #ffffff;
+    --blog: #4b48c9;
+    --shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.05), 0 6px 16px -6px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 0 0 0.5px rgba(0, 0, 0, 0.08), 0 20px 50px -10px rgba(0, 0, 0, 0.28);
+}
+
+.dark {
+    --background: #161618;
+    --foreground: #f5f5f7;
+    --card: #232325;
+    --card-foreground: #f5f5f7;
+    --popover: #232325;
+    --popover-foreground: #f5f5f7;
+    --primary: #eb0f0f;
+    --primary-foreground: #ffffff;
+    --secondary: #2c2c2e;
+    --secondary-foreground: #f5f5f7;
+    --muted: #2c2c2e;
+    --muted-foreground: #8e8e93;
+    --accent: rgba(255, 255, 255, 0.07);
+    --accent-foreground: #f5f5f7;
+    --destructive: #ff6961;
+    --border: #38383a;
+    --input: #38383a;
+    --ring: #eb0f0f;
+    --chart-1: #eb0f0f;
+    --chart-2: #5e5ce6;
+    --chart-3: #0a84a0;
+    --chart-4: #c93400;
+    --chart-5: #636366;
+    --sidebar: #161618;
+    --sidebar-foreground: #f5f5f7;
+    --sidebar-primary: #eb0f0f;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: rgba(255, 255, 255, 0.11);
+    --sidebar-accent-foreground: #f5f5f7;
+    --sidebar-border: #38383a;
+    --sidebar-ring: #eb0f0f;
+
+    --brand: #eb0f0f;
+    --brand-hover: #ff2d2d;
+    --brand-soft: #3a1d1d;
+    --brand-text: #ff6961;
+    --surface-2: #2c2c2e;
+    --surface-3: #2e1f1f;
+    --glass: rgba(35, 35, 37, 0.72);
+    --glass-strong: rgba(44, 44, 46, 0.86);
+    --line: #38383a;
+    --line-strong: #545456;
+    --hairline: rgba(255, 255, 255, 0.08);
+    --fill: rgba(255, 255, 255, 0.07);
+    --fill-2: rgba(255, 255, 255, 0.11);
+    --ink-2: #c7c7cc;
+    --ink-3: #8e8e93;
+    --ok: #30d158;
+    --ok-soft: #173a22;
+    --alert-soft: #3a1d1d;
+    --redac: #ff6961;
+    --redac-soft: #2a1f20;
+    --sub: #d9b44a;
+    --sub-ink: #1d1d1f;
+    --pro: #5ea2ff;
+    --av-1: #5e5ce6;
+    --av-2: #0a84a0;
+    --av-3: #636366;
+    --av-4: #c93400;
+    --av-5: #d30f45;
+    --hero: #0e0e10;
+    --hero-top: #2c2c2e;
+    --note: #a78bfa;
+    --note-ink: #140b2e;
+    --blog: #9d9bff;
+    --shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.06), 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 0 0 0.5px rgba(255, 255, 255, 0.1), 0 20px 50px -10px rgba(0, 0, 0, 0.7);
+    color-scheme: dark;
+}
+
+@keyframes note-pulse {
+  50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--note) 10%, transparent); }
+}
+@keyframes flash {
+  0%, 40% { box-shadow: 0 0 0 3px var(--brand); }
+}
+@keyframes grow {
+  from { width: 0; }
+}
+@keyframes pop {
+  50% { transform: scale(1.35) rotate(-12deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground font-sans text-[15px] leading-normal antialiased;
+    }
+  html {
+    @apply font-sans;
+    }
+  h1, h2, h3 {
+    text-wrap: balance;
+    }
+}

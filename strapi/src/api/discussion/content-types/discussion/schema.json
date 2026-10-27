@@ -1,0 +1,107 @@
+{
+  "kind": "collectionType",
+  "collectionName": "discussions",
+  "info": {
+    "singularName": "discussion",
+    "pluralName": "discussions",
+    "displayName": "Discussion",
+    "description": "Question ou discussion ouverte par un membre"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "minLength": 10,
+      "maxLength": 160
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "content": {
+      "type": "text",
+      "maxLength": 10000
+    },
+    "type": {
+      "type": "enumeration",
+      "required": true,
+      "default": "discussion",
+      "enum": [
+        "question",
+        "discussion",
+        "poll"
+      ]
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "required": true,
+      "inversedBy": "discussions"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "required": true,
+      "inversedBy": "discussions"
+    },
+    "replies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reply.reply",
+      "mappedBy": "discussion"
+    },
+    "article": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "pinned": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "featured": {
+      "type": "enumeration",
+      "enum": [
+        "question",
+        "poll"
+      ]
+    },
+    "views": {
+      "type": "integer",
+      "default": 0,
+      "min": 0,
+      "required": true
+    },
+    "pollOptions": {
+      "type": "json"
+    },
+    "pollVotes": {
+      "type": "json"
+    },
+    "usefulBy": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "usefulDiscussions"
+    },
+    "followedBy": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "followedDiscussions"
+    },
+    "usefulBase": {
+      "type": "integer",
+      "default": 0,
+      "min": 0,
+      "required": true
+    }
+  }
+}

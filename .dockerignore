@@ -1,0 +1,17 @@
+.git
+.claude
+docker
+database
+**/node_modules
+**/.env
+**/.env.*
+**/.next
+**/dist
+**/.strapi
+**/.tmp
+**/.cache
+strapi/public/uploads/*
+!strapi/public/uploads/.gitkeep
+readme.txt
+*.pdf
+*.tmp

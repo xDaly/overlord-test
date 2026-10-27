@@ -1,0 +1,16 @@
+{
+  "name": "overlord",
+  "private": true,
+  "workspaces": [
+    "strapi",
+    "frontend"
+  ],
+  "scripts": {
+    "dev:strapi": "npm run develop -w strapi",
+    "dev:frontend": "npm run dev -w frontend",
+    "db:restore": "node --env-file=.env scripts/restore-db.cjs"
+  },
+  "dependencies": {
+    "pg": "8.20.0"
+  }
+}

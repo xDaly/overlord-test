@@ -1,0 +1,12 @@
+node_modules/
+.env
+.tmp/
+.cache/
+dist/
+build/
+.strapi/
+docker/postgres/
+docker/uploads/*
+!docker/uploads/.gitkeep
+readme.txt
+*.tmp

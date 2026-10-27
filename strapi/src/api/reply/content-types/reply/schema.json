@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "replies",
+  "info": {
+    "singularName": "reply",
+    "pluralName": "replies",
+    "displayName": "Reply",
+    "description": "Réponse d'un membre à une discussion"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "text",
+      "required": true,
+      "minLength": 1
+    },
+    "isBestAnswer": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "required": true,
+      "inversedBy": "replies"
+    },
+    "discussion": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::discussion.discussion",
+      "required": true,
+      "inversedBy": "replies"
+    },
+    "verified": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "usefulBy": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "usefulReplies"
+    },
+    "usefulBase": {
+      "type": "integer",
+      "default": 0,
+      "min": 0,
+      "required": true
+    }
+  }
+}

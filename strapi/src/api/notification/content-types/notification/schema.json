@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "notifications",
+  "info": {
+    "singularName": "notification",
+    "pluralName": "notifications",
+    "displayName": "Notification",
+    "description": "Avis adressé à un membre (réponse, « Utile », mention, badge…)"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "recipient": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "kind": {
+      "type": "enumeration",
+      "required": true,
+      "enum": ["reply", "like", "mention", "badge", "solution", "level", "event"]
+    },
+    "actor": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "discussion": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::discussion.discussion"
+    },
+    "blogPost": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::blog-post.blog-post"
+    },
+    "badge": {
+      "type": "string",
+      "maxLength": 40
+    },
+    "text": {
+      "type": "string",
+      "required": true,
+      "maxLength": 200
+    },
+    "read": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}
